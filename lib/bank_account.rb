@@ -3,6 +3,7 @@ class BankAccount
   attr_accessor :balance, :status
 
   # initialize BankAccount w/ name, balance = 1000, status = "open"
+  # utlizing attr_reader prevents ability to change name 
   def initialize(name)
     @name = name
     @balance = 1000
