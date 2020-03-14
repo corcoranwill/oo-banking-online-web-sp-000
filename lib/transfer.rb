@@ -11,10 +11,16 @@ class Transfer
     @amount = amount
   end
 
+  # verifies sender and receiver have valid BankAccount's
   def valid?
     sender.valid? && receiver.valid?
   end
 
+  # if sender/receiver are valid and sender balance > transfer amount and status "pending"
+  # => then
+  # ==> remove amount from sender account / add to receiver account / change status "complete"
+  # => else
+  # ==> reject the transfer
   def execute_transaction
     if valid? && sender.balance > amount && self.status == "pending"
       sender.balance -= amount
