@@ -34,6 +34,8 @@ class Transfer
   # if sender/receiver are valid AND receiver balance > transfer amount AND status "complete"
   # => then
   # ==> remover amount from receiver account / add to sender account / change status "reversed"
+  # => else
+  # ==> reject the transfer
   def reverse_transfer
     if valid? && receiver.balance > amount && self.status == "complete"
       receiver.balance -= amount
