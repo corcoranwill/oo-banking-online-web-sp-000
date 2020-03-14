@@ -16,7 +16,7 @@ class Transfer
     sender.valid? && receiver.valid?
   end
 
-  # if sender/receiver are valid and sender balance > transfer amount and status "pending"
+  # if sender/receiver are valid AND sender balance > transfer amount AND status "pending"
   # => then
   # ==> remove amount from sender account / add to receiver account / change status "complete"
   # => else
@@ -31,7 +31,9 @@ class Transfer
     end
   end
 
-
+  # if sender/receiver are valid AND receiver balance > transfer amount AND status "complete"
+  # => then
+  # ==> remover amount from receiver account / add to sender account / change status "reversed"
   def reverse_transfer
     if valid? && receiver.balance > amount && self.status == "complete"
       receiver.balance -= amount
